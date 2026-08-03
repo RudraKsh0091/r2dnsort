@@ -1,0 +1,41 @@
+[package]
+name = "r2dnsort"
+version = "0.1.0"
+edition = "2021"
+authors = ["Seth M. Morton"]
+description = "Simple yet flexible natural sorting in Rust (r2dnsort, a Rust port of Python natsort)"
+license = "MIT"
+repository = "https://github.com/RudraKsh0091/r2dnsort"
+autobenches = false
+
+[lib]
+crate-type = ["cdylib", "rlib"]
+
+[dependencies]
+regex = "1.10"
+lazy_static = "1.4"
+num-bigint = "0.4"
+ordered-float = "4.2"
+bitflags = "2.4"
+unicode-normalization = "0.1"
+pyo3 = { version = "0.20.3", features = ["extension-module", "abi3-py38"], optional = true }
+
+[features]
+python-ext = ["pyo3"]
+
+[[bin]]
+name = "r2dnsort-cli"
+path = "src/bin/r2dnsort.rs"
+
+[dev-dependencies]
+tempfile = "3.8"
+# Transitive pin: newer tempfile/rand chains pull in a getrandom release
+# that requires edition2024 (needs a newer cargo/rustc than what CI here
+# has). Pin to the last 0.2.x line, which the whole tempfile chain is
+# still compatible with.
+getrandom = "=0.2.15"
+fastrand = "=2.0.1"
+
+[[bin]]
+name = "natsort_bench"
+path = "benches/natsort_bench.rs"
