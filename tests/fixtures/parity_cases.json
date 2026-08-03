@@ -1,0 +1,4 @@
+{
+  "description": "shared input/expected-output cases, also fed to scripts/parity_check.py",
+  "cases": []
+}
