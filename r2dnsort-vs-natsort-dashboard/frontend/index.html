@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>r2dnsort vs natsort — Live Dashboard</title>
+<link rel="stylesheet" href="/static/style.css" />
+</head>
+<body>
+  <div class="app">
+
+    <header class="topbar">
+      <div class="brand">
+        <div class="brand-mark">R2</div>
+        <div class="brand-text">
+          <h1>r2dnsort <span class="vs">vs</span> natsort</h1>
+          <p>Rust-powered natural sort, benchmarked live against the Python original</p>
+        </div>
+      </div>
+      <div class="status-pills" id="statusPills">
+        <span class="pill loading">checking natsort…</span>
+        <span class="pill loading">checking r2dnsort…</span>
+      </div>
+    </header>
+
+    <main class="layout">
+
+      <!-- CONTROLS -->
+      <section class="panel controls">
+        <h2>1 · Input</h2>
+
+        <label class="field-label">Sample datasets</label>
+        <div class="chip-row" id="sampleChips"></div>
+
+        <label class="field-label" for="itemsInput">Items (one per line)</label>
+        <textarea id="itemsInput" rows="9" spellcheck="false"></textarea>
+        <div class="hint" id="itemCount">0 items</div>
+
+        <h2>2 · Options</h2>
+
+        <label class="field-label" for="algSelect">Algorithm</label>
+        <select id="algSelect">
+          <option value="natsorted">natsorted — general natural sort</option>
+          <option value="realsorted">realsorted — treats numbers as reals (signed/float)</option>
+          <option value="humansorted">humansorted — locale/human aware</option>
+          <option value="os_sorted">os_sorted — OS file-manager style</option>
+        </select>
+
+        <div class="row-split">
+          <label class="checkbox-label">
+            <input type="checkbox" id="reverseCheck" /> Reverse
+          </label>
+          <label class="field-label inline" for="runsInput">Benchmark runs</label>
+          <input type="number" id="runsInput" min="1" max="200" value="25" />
+        </div>
+
+        <label class="field-label">ns flags</label>
+        <div class="chip-row flags" id="flagChips"></div>
+
+        <button id="runBtn" class="run-btn">▶ Run both libraries</button>
+      </section>
+
+      <!-- RESULTS -->
+      <section class="panel results">
+        <h2>3 · Results — side by side</h2>
+
+        <div class="results-grid" id="resultsGrid">
+          <div class="result-col" data-lib="natsort">
+            <div class="result-head">
+              <span class="dot py"></span>
+              <span class="lib-name">natsort</span>
+              <span class="lib-sub">Python</span>
+              <span class="time-badge" id="time-natsort">—</span>
+            </div>
+            <ol class="result-list" id="list-natsort"></ol>
+          </div>
+
+          <div class="result-col" data-lib="r2dnsort">
+            <div class="result-head">
+              <span class="dot rs"></span>
+              <span class="lib-name">r2dnsort</span>
+              <span class="lib-sub">Rust · PyO3</span>
+              <span class="time-badge" id="time-r2dnsort">—</span>
+            </div>
+            <ol class="result-list" id="list-r2dnsort"></ol>
+          </div>
+        </div>
+
+        <div class="match-banner" id="matchBanner"></div>
+
+        <div class="bench-wrap">
+          <h3>Timing (avg of N runs, lower is better)</h3>
+          <div class="bars" id="benchBars">
+            <div class="bar-row">
+              <span class="bar-label">natsort</span>
+              <div class="bar-track"><div class="bar-fill py" id="bar-natsort"></div></div>
+              <span class="bar-value" id="barval-natsort">—</span>
+            </div>
+            <div class="bar-row">
+              <span class="bar-label">r2dnsort</span>
+              <div class="bar-track"><div class="bar-fill rs" id="bar-r2dnsort"></div></div>
+              <span class="bar-value" id="barval-r2dnsort">—</span>
+            </div>
+          </div>
+          <p class="speedup" id="speedupText"></p>
+        </div>
+      </section>
+
+    </main>
+
+    <footer class="foot">
+      <span>r2dnsort — <a href="https://pypi.org/project/r2dnsort/" target="_blank" rel="noopener">PyPI</a> ·
+      <a href="https://github.com/RudraKsh0091/r2dnsort" target="_blank" rel="noopener">GitHub</a></span>
+      <span>Backend: FastAPI · Frontend: vanilla JS</span>
+    </footer>
+  </div>
+
+<script src="/static/app.js"></script>
+</body>
+</html>
