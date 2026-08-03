@@ -1,0 +1,29 @@
+# --- Rust ---
+/target/
+**/*.rs.bk
+Cargo.lock.bak
+
+# --- Python / maturin / venv ---
+.venv/
+venv/
+env/
+__pycache__/
+*.py[cod]
+*.egg-info/
+*.pyd
+*.pdb
+*.so
+*.whl
+.pytest_cache/
+build/
+dist/
+
+# --- Editor / OS cruft ---
+.vscode/
+.idea/
+*.swp
+.DS_Store
+Thumbs.db
+
+# --- Misc ---
+*.log
