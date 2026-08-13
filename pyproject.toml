@@ -4,8 +4,9 @@ build-backend = "maturin"
 
 [project]
 name = "r2dnsort"
-version = "0.1.0"
+version = "0.1.1"
 description = "Simple yet flexible natural sorting in Rust, exposed to Python"
+readme = "README.md"
 requires-python = ">=3.8"
 license = { text = "MIT" }
 classifiers = [
